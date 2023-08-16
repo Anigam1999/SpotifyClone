@@ -29,6 +29,7 @@ nav ul li{
 
 div i{
     cursor: pointer;
+    outline: none;
 }
 
 .brand img{
@@ -72,12 +73,12 @@ div i{
 .icons{
     margin-top: 12px;
     cursor: pointer;
-    /* outline: none; */
+    outline: none;
 }
 
 .icons i{
     cursor: pointer;
-    /* outline: none; */
+    outline: none;
 }
 
 #myProgressBar{
