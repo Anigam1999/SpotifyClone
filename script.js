@@ -128,11 +128,17 @@ Array.from(document.getElementsByClassName("songItemPlay")).forEach((element)=>{
 
 // listening to next master icon
 document.getElementById('next').addEventListener('click', ()=>{   
+    ele = Array.from(document.getElementsByClassName("songItemPlay"))[songIndex]
+    ele.classList.remove('fa-circle-pause')
+    ele.classList.add('fa-circle-play') 
     if(songIndex >= 9){
         songIndex = 0
     } else {
         songIndex += 1
     }
+    ele = Array.from(document.getElementsByClassName("songItemPlay"))[songIndex]
+    ele.classList.remove('fa-circle-play')
+    ele.classList.add('fa-circle-pause')
     currentPlayingTag.innerHTML  = songs[songIndex].songName
     audioElement.src = `songs/${songIndex+1}.mp3`
     audioElement.currentTime = 0
@@ -143,11 +149,17 @@ document.getElementById('next').addEventListener('click', ()=>{
 
 // listening to previous master icon
 document.getElementById('previous').addEventListener('click', ()=>{   
+    ele = Array.from(document.getElementsByClassName("songItemPlay"))[songIndex]
+    ele.classList.remove('fa-circle-pause')
+    ele.classList.add('fa-circle-play')
     if(songIndex <= 0){
-        songIndex = 0
+        songIndex = 9
     } else {
         songIndex -= 1
     }
+    ele = Array.from(document.getElementsByClassName("songItemPlay"))[songIndex]
+    ele.classList.remove('fa-circle-play')
+    ele.classList.add('fa-circle-pause')
     currentPlayingTag.innerHTML  = songs[songIndex].songName
     audioElement.src = `songs/${songIndex+1}.mp3`
     audioElement.currentTime = 0
