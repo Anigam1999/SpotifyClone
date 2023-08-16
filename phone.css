@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=REM&display=swap');
 
 body{
@@ -26,7 +27,7 @@ nav ul li{
     padding: 0 12px;
 }
 
-div i{
+i{
     cursor: pointer;
 }
 
@@ -42,68 +43,84 @@ div i{
     font-size: 1.3rem;
 }
 
+.tag{
+    display: none;
+}
 .container{
     min-height: 60vh;
     background-color: black;
     /* color: white; */
     font-family: 'Varela Round', sans-serif;
     display: flex;
-    margin: 23px auto;
-    width: 70%;
+    margin: 20px;
+    width: 80%;
     border-radius: 12px;
-    padding: 34px;
+    padding: 25px;
     background-image: url('background.webp');
     background-size: cover;
 }
 
 .bottom{
     position: sticky;
-    height: 120px;
+    height: 130px;
     background-color: black;
     color: white;
+    /* padding-top: 10px; */
     display: flex;
     bottom: 0;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center; */
+    /* justify-content: center; */
     flex-direction: column;
 }
 
 .icons{
-    margin-top: 12px;
-    cursor: pointer;
+    display: flex;
+    width: 70vw;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-left: 70px;
+    z-index: 10;
 }
-
 .icons i{
-    cursor: pointer;
+    padding: 0 6px;
 }
 
 #myProgressBar{
     width: 80vw;
     cursor: pointer;
+    padding: 15px;
+    z-index: 10;
 }
 
 .songItemContainer{
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
 .songItem{
-    height: 45px; 
     display: flex;
+    height: 80px; 
+    flex-direction: row;
     background-color: white;
-    width: 120%;
+    width: 100%;
     margin: 12px 0;
-    justify-content: space-between;
+    /* justify-content: ; */
     align-items: center;
     border-radius: 34px;
 }
 
+.songName{
+    justify-content:first baseline;
+}
+
 .songItem img{
-    width: 43px;
+    width: 50px;
     margin: 0 15px;
     border-radius: 34px;
 }
 
 .timestamp{
+    display: none;
     margin: 0 10px;
 }
 
@@ -117,13 +134,21 @@ div i{
     left: 9vw;
     margin-top: 16px;
     font-family: 'Varela Round', sans-serif;
+    z-index: -1;
 }
 
 .songInfo p{
-    margin: 15px 0;
+    display: inline;
+    width: 60vw;
+    text-align: center;
+    /* padding-right: 40px; */
+    margin-top: 25px;
+    z-index: -1;
 }
 
 .songInfo img{
     opacity: 0;
+    margin-top: 40px;
+    margin-bottom: 15px;
     transition: opacity 0.5s ease-in;
 }
