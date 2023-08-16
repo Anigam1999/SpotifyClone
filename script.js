@@ -1,4 +1,4 @@
-console.log("Welcome to javascript")
+console.log("Welcome to MyMusic");
 
 let masterPlay = document.getElementById("masterPlay")
 let myProgressBar = document.getElementById("myProgressBar")
@@ -35,6 +35,7 @@ songItems.forEach((element, i)=>{
 
 // listen to event
 masterPlay.addEventListener('click', ()=>{
+    fun()
     if(audioElement.paused || audioElement.currentTime<=0){
         audioElement.play();
         ele = Array.from(document.getElementsByClassName("songItemPlay"))[songIndex]
@@ -56,8 +57,22 @@ audioElement.addEventListener('timeupdate', ()=>{
     let progress = parseInt((audioElement.currentTime/audioElement.duration)*100); 
     myProgressBar.value = progress;
 })
+const checkCompletion = () => {
+    if (myProgressBar.value == myProgressBar.max) {
+        ele = Array.from(document.getElementsByClassName("songItemPlay"))[songIndex]
+        ele.classList.remove('fa-circle-pause')
+        ele.classList.add('fa-circle-play')
+        masterPlay.classList.remove('fa-circle-pause');
+        masterPlay.classList.add('fa-circle-play');
+        gif.style.opacity = 0;
+        clearInterval(id);
+    }
+};
 
-myProgressBar.addEventListener('change', ()=>{
+const fun = () => { 
+    var id = setInterval(checkCompletion, 1000);
+}
+myProgressBar.addEventListener('input', ()=>{
     audioElement.currentTime = myProgressBar.value * audioElement.duration/100;
 })
 
@@ -88,6 +103,7 @@ Array.from(document.getElementsByClassName("songItemPlay")).forEach((element)=>{
         }else{
             makeAllPlays();
             songIndex = newIndex
+            fun()
             audioElement.src = `songs/${songIndex+1}.mp3`
             currentPlayingTag.innerHTML  = songs[songIndex].songName
             audioElement.currentTime = 0
