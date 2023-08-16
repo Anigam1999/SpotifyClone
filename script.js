@@ -21,6 +21,7 @@ let audioElement = new Audio(`songs/${songIndex+1}.mp3`);
 let currentPlayingTag = document.getElementById('currentPlayingTag') 
 currentPlayingTag.innerHTML  = songs[songIndex].songName
 
+// adding duration of each song 
 songItems.forEach((element, i)=>{
     element.getElementsByTagName('img')[0].src = songs[i].coverPath;
     element.getElementsByClassName('songName')[0].innerHTML = songs[i].songName;
@@ -33,7 +34,7 @@ songItems.forEach((element, i)=>{
     })
 })
 
-// listen to event
+// listen to masterplayer
 masterPlay.addEventListener('click', ()=>{
     fun()
     if(audioElement.paused || audioElement.currentTime<=0){
@@ -53,10 +54,13 @@ masterPlay.addEventListener('click', ()=>{
     }
 })
 
+// updating the progress bar
 audioElement.addEventListener('timeupdate', ()=>{
     let progress = parseInt((audioElement.currentTime/audioElement.duration)*100); 
     myProgressBar.value = progress;
 })
+
+// function to check the song completion
 const checkCompletion = () => {
     if (myProgressBar.value == myProgressBar.max) {
         ele = Array.from(document.getElementsByClassName("songItemPlay"))[songIndex]
@@ -69,13 +73,17 @@ const checkCompletion = () => {
     }
 };
 
+// function for detecting song completion
 const fun = () => { 
     var id = setInterval(checkCompletion, 1000);
 }
+
+// updating the song as per progress bar status 
 myProgressBar.addEventListener('input', ()=>{
     audioElement.currentTime = myProgressBar.value * audioElement.duration/100;
 })
 
+// function to make all songs playable
 const makeAllPlays = ()=> {
     Array.from(document.getElementsByClassName("songItemPlay")).forEach((element)=>{
         element.classList.add('fa-circle-play')
@@ -83,6 +91,7 @@ const makeAllPlays = ()=> {
     })    
 }
 
+// listening to container song list
 Array.from(document.getElementsByClassName("songItemPlay")).forEach((element)=>{
     element.addEventListener('click', (e)=>{
         newIndex = parseInt(e.target.id)
@@ -117,6 +126,7 @@ Array.from(document.getElementsByClassName("songItemPlay")).forEach((element)=>{
     })
 })
 
+// listening to next master icon
 document.getElementById('next').addEventListener('click', ()=>{   
     if(songIndex >= 9){
         songIndex = 0
@@ -131,6 +141,7 @@ document.getElementById('next').addEventListener('click', ()=>{
     masterPlay.classList.add('fa-circle-pause');
 })
 
+// listening to previous master icon
 document.getElementById('previous').addEventListener('click', ()=>{   
     if(songIndex <= 0){
         songIndex = 0
